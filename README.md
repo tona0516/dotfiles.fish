@@ -1,1 +1,1 @@
-# dorfiles.fish
+# dotfiles.fish
