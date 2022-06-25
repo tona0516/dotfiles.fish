@@ -1,13 +1,15 @@
-DOTFILES_ZIP := dotfiles.fish.zip
-TEST_IMAGE := dotfiles_test_image
+DOTFILES_ZIP   := dotfiles.fish.zip
+TEST_IMAGE     := dotfiles_test_image
 TEST_CONTAINER := dotfiles_test_container
 
-.PHONY: all
-all: brew symlink fisher vim relogin
+.PHONY: deploy
+deploy: fzf symlink fisher vim
 
-.PHONY: brew
-brew:
-	./installer/brew_installer.sh
+.PHONY: fzf
+fzf:
+	rm -rf ~/.fzf
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	 ~/.fzf/install --all --no-bash --no-zsh
 
 .PHONY: symlink
 symlink:
@@ -21,9 +23,13 @@ fisher:
 vim:
 	./installer/vim_installer.sh
 
-.PHONY: relogin
-relogin:
-	exec fish -l
+.PHONY: homebrew
+homebrew:
+	./installer/homebrew_installer.sh
+
+.PHONY: brew
+brew:
+	./installer/brew_installer.sh
 
 .PHONY: docker-zip-dotfiles
 docker-zip-dotfiles:

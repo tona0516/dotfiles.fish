@@ -1,8 +1,3 @@
-# Required
-brew "fzf"
-tap "knqyf263/pet"
-brew "knqyf263/pet/pet"
-
 # shell
 brew "bash"
 brew "zsh"
@@ -50,6 +45,7 @@ brew "rename"
 brew "tree"
 brew "wget"
 brew "nvim"
+brew "fzf"
 
 if OS.mac?
     # iOS
@@ -62,7 +58,7 @@ if OS.mac?
     cask "android-studio"
     cask "anydesk"
     cask "discord"
-    cask "docker"
+    # cask "docker"
     cask "gas-mask"
     cask "google-chrome"
     cask "google-japanese-ime"

@@ -1,4 +1,4 @@
 .vscode
 
-Brewfile.*.lock.json
+Brewfile*.lock.json
 dotfiles.fish.zip

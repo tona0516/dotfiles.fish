@@ -1,15 +1,3 @@
-function snippets
-    pet search | read -l buffer
-    if [ $buffer ]
-        commandline $buffer
-    end
-    commandline -f repaint
-end
-
-function fish_user_key_bindings
-    bind \cs 'snippets'
-end
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
     abbr g "git"
