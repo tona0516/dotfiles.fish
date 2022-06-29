@@ -31,6 +31,14 @@ homebrew:
 brew:
 	./installer/brew_installer.sh
 
+.PHONY: docker-update-completion
+docker-update-completion:
+	mkdir -p symlink/common/.config/fish/completions
+	curl https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/fish/docker.fish \
+		-o symlink/common/.config/fish/completions/docker.fish
+	curl https://raw.githubusercontent.com/docker/compose/master/contrib/completion/fish/docker-compose.fish \
+		-o symlink/common/.config/fish/completions/docker-compose.fish
+
 .PHONY: docker-zip-dotfiles
 docker-zip-dotfiles:
 	rm -vf $(DOTFILES_ZIP)
