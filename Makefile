@@ -13,10 +13,7 @@ after-all:
 
 .PHONY: prerequisite
 prerequisite:
-	command -v fish > /dev/null 2>&1
-	command -v git > /dev/null 2>&1
-	command -v curl > /dev/null 2>&1
-	command -v vim > /dev/null 2>&1
+	command -v fish git curl vim > /dev/null 2>&1
 
 .PHONY: fzf
 fzf:
