@@ -154,6 +154,7 @@ Plug 'roxma/vim-paste-easy'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'dag/vim-fish'
 call plug#end()
 
 " インストール判定関数
