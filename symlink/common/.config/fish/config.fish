@@ -1,3 +1,17 @@
+function vim-modified
+    set git_repository_root (git rev-parse --show-toplevel)
+    if not string length -q -- $git_repository_root
+        return
+    end
+
+    set file (git status --porcelain | awk '{print $2}' | fzf +m)
+    if not string length -q -- $file
+        return
+    end
+
+    vim $git_repository_root/$file
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     abbr g "git"
@@ -14,6 +28,7 @@ if status is-interactive
     abbr k "kubectl"
     abbr ssh "ssh -A"
     abbr relogin "exec fish -l"
+    abbr vim-sudo "sudo -E vim"
 
     set -x FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border"
 
