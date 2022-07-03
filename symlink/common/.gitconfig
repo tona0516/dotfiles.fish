@@ -1,0 +1,17 @@
+[user]
+	name = tona0516
+	email = tonango.0516@gmail.com
+[dotfiles]
+	managed = true
+[core]
+	editor = vim
+[fetch]
+	prune = true
+[pull]
+	ff = only
+[rebase]
+	autostash = true
+[push]
+	default = current
+[grep]
+	lineNumber = true
