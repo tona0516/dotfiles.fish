@@ -4,12 +4,17 @@ function vim-modified
         return
     end
 
-    set file (git status --porcelain | awk '{print $2}' | fzf +m)
-    if not string length -q -- $file
+    set changed_files (git status --porcelain)
+    if not string length -q -- $changed_files
         return
     end
 
-    vim $git_repository_root/$file
+    set selected_file (echo $changed_files | awk '{print $2}' | fzf +m)
+    if not string length -q -- $selected_file
+        return
+    end
+
+    vim $git_repository_root/$selected_file
 end
 
 if status is-interactive
