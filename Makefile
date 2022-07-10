@@ -71,6 +71,11 @@ update-completion:
 	curl https://raw.githubusercontent.com/docker/compose/master/contrib/completion/fish/docker-compose.fish \
 		-o symlink/common/.config/fish/completions/docker-compose.fish
 
+.PHONY: install-zsh-history-to-fish
+install-zsh-history-to-fish:
+	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
+	pip3 install zsh-history-to-fish
+
 .PHONY: zip-dotfiles
 zip-dotfiles:
 	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
