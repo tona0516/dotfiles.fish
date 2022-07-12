@@ -6,6 +6,9 @@ GREEN     := \033[0;32m
 CYAN_BOLD := \033[1;36m
 NC        := \033[0m
 
+#----------------------------------------
+# Deploy commands
+#----------------------------------------
 .PHONY: deploy
 deploy: \
 	check-prerequisite \
@@ -14,12 +17,6 @@ deploy: \
 	install-fish-plugin \
 	install-vim-plugin \
 	complete \
-
-.PHONY: complete
-complete:
-	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
-	@printf "$(GREEN)%s$(NC)\n" "dotfiles.fish's deployment is completed."
-	@printf "$(GREEN)%s$(NC)\n" "Please run 'exec fish -l'."
 
 .PHONY: check-prerequisite
 check-prerequisite:
@@ -52,6 +49,38 @@ install-vim-plugin:
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	vim +PlugInstall +qa
 
+.PHONY: complete
+complete:
+	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
+	@printf "$(GREEN)%s$(NC)\n" "dotfiles.fish's deployment is completed."
+	@printf "$(GREEN)%s$(NC)\n" "Please run 'exec fish -l'."
+
+#----------------------------------------
+# Test commands
+#----------------------------------------
+.PHONY: run-test-docker-container
+ run-test-docker-container: zip-dotfiles build-test-docker-image
+	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
+	docker rm -vf $(TEST_CONTAINER)
+	docker run -itd --name $(TEST_CONTAINER) $(TEST_IMAGE)
+	docker cp $(DOTFILES_ZIP) $(TEST_CONTAINER):/home/tona0516/
+	docker exec $(TEST_CONTAINER) bash -c "unzip $(DOTFILES_ZIP); rm -f $(DOTFILES_ZIP)"
+	docker exec -it $(TEST_CONTAINER) env TERM=xterm-256color /usr/bin/fish
+
+.PHONY: zip-dotfiles
+zip-dotfiles:
+	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
+	rm -vf $(DOTFILES_ZIP)
+	zip -r $(DOTFILES_ZIP) ../dotfiles.fish/ -x "*.git*"
+
+.PHONY: build-test-docker-image
+build-test-docker-image:
+	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
+	docker build -t $(TEST_IMAGE) .
+
+#----------------------------------------
+# Other coomands
+#----------------------------------------
 .PHONY: install-homebrew
 install-homebrew:
 	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
@@ -75,23 +104,3 @@ update-completion:
 install-zsh-history-to-fish:
 	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
 	pip3 install zsh-history-to-fish
-
-.PHONY: zip-dotfiles
-zip-dotfiles:
-	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
-	rm -vf $(DOTFILES_ZIP)
-	zip -r $(DOTFILES_ZIP) ../dotfiles.fish/ -x "*.git*"
-
-.PHONY: build-docker-image
-build-docker-image:
-	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
-	docker build -t $(TEST_IMAGE) .
-
-.PHONY: run-docker-container
-run-docker-container: zip-dotfiles build-docker-image
-	@printf "$(CYAN_BOLD)%s$(NC)\n" "$@:"
-	docker rm -vf $(TEST_CONTAINER)
-	docker run -itd --name $(TEST_CONTAINER) $(TEST_IMAGE)
-	docker cp $(DOTFILES_ZIP) $(TEST_CONTAINER):/home/tona0516/
-	docker exec $(TEST_CONTAINER) bash -c "unzip $(DOTFILES_ZIP); rm -f $(DOTFILES_ZIP)"
-	docker exec -it $(TEST_CONTAINER) env TERM=xterm-256color /usr/bin/fish
