@@ -29,6 +29,7 @@ brew "composer"
 brew "kotlin"
 brew "ktlint"
 brew "openjdk@11"
+brew "gradle"
 
 # Git
 brew "git"
@@ -46,6 +47,7 @@ brew "tree"
 brew "wget"
 brew "nvim"
 brew "fzf"
+brew "asdf"
 
 if OS.mac?
     # iOS
