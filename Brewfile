@@ -36,6 +36,10 @@ brew "git"
 brew "pre-commit"
 brew "lazygit"
 
+# snyk
+tap "snyk/tap"
+brew "snyk"
+
 # others
 brew "bat"
 brew "exa"
