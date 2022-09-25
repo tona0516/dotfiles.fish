@@ -49,6 +49,7 @@ if status is-interactive
     if command -v /home/linuxbrew/.linuxbrew/bin/brew > /dev/null 2>&1; eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv); end
     fish_add_path $HOME/Library/Android/sdk/platform-tools
     fish_add_path $HOME/Library/Android/sdk/emulator
+    fish_add_path /opt/homebrew/opt/openjdk@11/bin
 
     fish_config theme choose "Base16 Default Dark"
 end
