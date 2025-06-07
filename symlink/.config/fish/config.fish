@@ -28,6 +28,7 @@ if status is-interactive
     executable kubectl && alias k="kubectl"
 
     set -x FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
+    set -x ENHANCD_ENABLE_DOUBLE_DOT false
 
     bind \cd delete-char
     bind \cd 'enhancd; commandline -f repaint'
