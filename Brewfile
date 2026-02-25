@@ -1,5 +1,7 @@
 # Note: コマンドラインツールは基本的にmiseで導入する
 
+brew "fish"
+
 if OS.mac?
     # PW要求
     cask "google-japanese-ime"
