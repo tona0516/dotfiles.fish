@@ -12,6 +12,7 @@ if OS.mac?
     brew "fastlane"
 
     # その他
+    cask "copilot-cli"
     cask "rectangle"
     cask "visual-studio-code"
 end
