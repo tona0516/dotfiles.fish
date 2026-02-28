@@ -2,9 +2,15 @@ TEST_IMAGE     := dotfiles_test_image
 TEST_CONTAINER := dotfiles_test_container
 DOTFILES  := dotfiles.fish
 
-#----------------------------------------
-# Test commands
-#----------------------------------------
+
+.PHONY: install
+install:
+	fish install.fish
+
+.PHONY: brew
+brew:
+	brew bundle
+
 .PHONY: docker-build
 docker-build:
 	docker build -t $(TEST_IMAGE) .
