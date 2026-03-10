@@ -11,6 +11,9 @@ if OS.mac?
     brew "carthage"
     brew "fastlane"
 
+    # AI
+    cask "claude-code"
+
     # その他
     cask "copilot-cli"
     cask "rectangle"
