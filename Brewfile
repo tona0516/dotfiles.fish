@@ -13,9 +13,11 @@ if OS.mac?
 
     # AI
     cask "claude-code"
+    cask "copilot-cli"
+    cask "codex"
 
     # その他
-    cask "copilot-cli"
+    cask "iterm2"
     cask "rectangle"
     cask "visual-studio-code"
 end
