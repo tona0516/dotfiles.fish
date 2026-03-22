@@ -1,13 +1,14 @@
-FROM debian:bookworm-slim
+FROM debian:stable-slim
 LABEL maintainer="tona0516 <tonango.0516@gmail.com>"
 
 ARG USER="tona0516"
 ARG DOTFILES="dotfiles.fish"
 
 # 環境を更新し、必要なパッケージをインストール
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     passwd \
     sudo \
+    make \
     curl \
     vim \
     less \
