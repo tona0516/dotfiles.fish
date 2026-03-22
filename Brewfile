@@ -3,9 +3,6 @@
 brew "fish"
 
 if OS.mac?
-    # PW要求
-    cask "google-japanese-ime"
-
     # iOS
     brew "cocoapods"
     brew "carthage"
@@ -20,4 +17,5 @@ if OS.mac?
     cask "iterm2"
     cask "rectangle"
     cask "visual-studio-code"
+    cask "font-hack-nerd-font"
 end
