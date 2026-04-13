@@ -14,7 +14,7 @@ if OS.mac?
     cask "codex"
 
     # その他
-    cask "iterm2"
+    cask "ghostty"
     cask "rectangle"
     cask "visual-studio-code"
     cask "font-hack-nerd-font"
